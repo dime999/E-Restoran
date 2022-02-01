@@ -1,0 +1,29 @@
+<app-generic-list [list]="movies">
+  <ng-container content>
+    <div class="movies-container">
+      <div
+        *ngFor="let movie of movies; let index = index"
+        class="movie-container"
+      >
+       <a [routerLink]="'/movie/' + movie.id">
+         <img [src]="movie.poster" alt="Poster" />
+       </a>
+       <p>
+         <a [routerLink]="'/movie/' + movie.id">{{movie.title}}</a>
+       </p>
+       <div>
+         <a [routerLink]="'/movies/edit/' + movie.id" mat-flat-button color="primary">
+          Uredi
+         </a>
+         <button mat-flat-button color="warn" type="button"
+          [swal]="{title: 'Confirmation', text: 'Da li ste sigurni da želite da izbrišete ovo jelo?',
+          showCancelButton: true}"
+          (confirm)="remove(movie.id)"
+         >
+           Izbriši
+         </button>
+       </div>
+      </div>
+    </div>
+  </ng-container>
+</app-generic-list>

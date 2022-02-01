@@ -1,0 +1,67 @@
+<form (submit)="saveChanges()" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Naziv jela*</mat-label>
+    <input formControlName="title" matInput />
+    <mat-error>Obavezno polje</mat-error>
+  </mat-form-field>
+
+  <div class="checkbox-container">
+    <mat-checkbox formControlName="inTheaters">Specijalna ponuda</mat-checkbox>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Video prezentacija</mat-label>
+    <input formControlName="trailer" matInput />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Cijena</mat-label>
+    <input  matInput />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Datum dodavanja jela</mat-label>
+    <input formControlName="releaseDate" matInput [matDatepicker]="picker" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <h4>Dodajte sliku</h4>
+  <app-input-img
+    [urlCurrentImage]="model?.poster"
+    (onImageSelected)="onImageSelected($event)"
+  ></app-input-img>
+
+  <h4>Opis jela</h4>
+
+  <app-input-markdown
+    [markdownContent]="model?.summary"
+    [label]="'Opis'"
+    (changeMarkdown)="changeMarkdown($event)"
+  ></app-input-markdown>
+
+  <h4>Odaberite vrstu jela</h4>
+
+  <app-multiple-selector
+    [NonSelectedItems]="nonSelectedGenres"
+    [SelectedItems]="selectedGenres"
+  ></app-multiple-selector>
+
+  <h4>Odaberite poslovnicu</h4>
+
+  <app-multiple-selector
+    [NonSelectedItems]="nonSelectedMovieTheaters"
+    [SelectedItems]="selectedMovieTheaters"
+  ></app-multiple-selector>
+
+  <h4>Odaberite uposlenika </h4>
+
+  <app-actors-autocomplete [selectedActors]=""></app-actors-autocomplete>
+
+  <div>
+    <button mat-flat-button color="primary" [disabled]="form.invalid">
+      Snimi
+    </button>
+    <a mat-stroked-button routerLink="/">Odustani</a>
+  </div>
+</form>

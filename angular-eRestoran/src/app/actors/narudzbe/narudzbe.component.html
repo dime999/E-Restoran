@@ -1,0 +1,46 @@
+<h2>Trenutne narudžbe</h2>
+
+
+
+<app-generic-list [list]="actors">
+    <ng-container content>
+        <table mat-table [dataSource]="actors" class="mat-elevation-z8 table-index">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Ime</th>
+                <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+           
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Uredi</th>
+                <td mat-cell *matCellDef="let element">
+                    <a
+                        routerLink="/detalji"
+                        mat-flat-button color="primary"
+                    >
+                    Pogledaj detalje narudžbe
+                    </a>
+                    <button mat-flat-button color="warn" 
+                    [swal]="{
+                        title: 'Potvrda',
+                        text: 'Da li ste sigurni da želite završiti narudžbu?',
+                        showCancelButton: true
+                    }"
+                    (confirm)="delete(element.id)">
+                        Završi narudžbu
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons
+        [length]="totalAmountOfRecords" [pageSize]="pageSize" (page)="updatePagination($event)"
+        class="mat-elevation-z8"
+        > 
+
+        </mat-paginator>
+
+    </ng-container>
+</app-generic-list>

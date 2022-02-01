@@ -1,0 +1,9 @@
+<h2>Dodajte novo jelo</h2>
+
+<app-form-movie 
+*ngIf="nonSelectedGenres"
+[nonSelectedGenres]="nonSelectedGenres" 
+[nonSelectedMovieTheaters]="nonSelectedMovieTheaters"
+(onSaveChanges)="saveChanges($event)"></app-form-movie>
+
+<mat-spinner *ngIf="!nonSelectedGenres"></mat-spinner>

@@ -1,0 +1,37 @@
+<h2>Unesite podatke za narudžbu</h2>
+<form (submit)="saveChanges()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Ime i prezime*</mat-label>
+      <input formControlName="name" matInput />
+      <mat-error>Ovo polje je obavezno</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Broj telefona*</mat-label>
+        <input formControlName="broj" matInput />
+        <mat-error>Ovo polje je obavezno</mat-error>
+      </mat-form-field>
+  
+    <h4>Označite na mapi vašu lokaciju</h4>
+  
+    <div style="position: relative; width: 600px;">
+      <app-map
+        [initialCoordinates]="initialCoordinates"
+        (onSelectedLocation)="onSelectedLocation($event)"
+      ></app-map>
+    </div>
+  
+    <div style="margin-top: 650px">
+      <button
+      [swal]="{
+        title: 'Narudžba',
+        text: 'Uspješno ste izvršili narudžbu',
+        showCancelButton: false
+    }"
+    (confirm)="Navedi()"
+      mat-flat-button color="primary" [disabled]="form.invalid">
+        Snimi
+      </button>
+      <a mat-stroked-button routerLink="/movie-theaters">Odustani</a>
+    </div>
+  </form>
+  

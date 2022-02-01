@@ -1,0 +1,32 @@
+<app-generic-list [list]="movies">
+    <ng-container content>
+      <div class="movies-container">
+        <div
+          *ngFor="let movie of movies; let index = index"
+          class="movie-container"
+        >
+         <a [routerLink]="'/movie/' + movie.id">
+           <img [src]="movie.poster" alt="Poster" />
+         </a>
+         <p>
+           <a [routerLink]="'/movie/' + movie.id">{{movie.title}}</a>
+         </p>
+         <div>
+           <a
+           [swal]="{
+            title: 'Potvrda',
+            text: 'Proizvod je dodan u korpu!',
+            showCancelButton: false
+        }"
+        (confirm)="Navedi()"
+
+           mat-flat-button color="primary">
+            Dodaj u korpu
+           </a>
+           
+         </div>
+        </div>
+      </div>
+    </ng-container>
+  </app-generic-list>
+  

@@ -1,0 +1,48 @@
+<mat-toolbar color="warn">
+  <span>
+    <a routerLink="" mat-button>
+      <mat-icon>fastfood</mat-icon> E-Restoran
+    </a>
+  </span>
+
+  <div>
+    <a mat-button routerLink="movies/filter">
+      <mat-icon>search</mat-icon>Pretražite naš meni</a>
+  </div>
+  <div>
+    <a mat-button routerLink="actors"> Rezervacije </a>
+  </div>
+
+  
+
+
+
+  <div>
+    <a mat-button routerLink="korpa"> Korpa </a>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Admin </button>
+    <div class="dropdown-content">
+      <a mat-button routerLink="genres">Vrste jela</a>
+      <a mat-button routerLink="movietheaters"> Poslovnice </a>
+      <a mat-button routerLink="movies/create"> Ponuda </a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Uposlenik </button>
+    <div class="dropdown-content">
+      <a mat-button routerLink="rezervacije"> Rezervacije </a>
+      <a mat-button routerLink="narudzbe"> Narudzbe </a>
+    </div>
+  </div>
+
+  
+  <div style="position: absolute; margin-left: 110rem;">
+    <a mat-button routerLink=""> Pozdrav, Adem </a>
+  </div> <div  style="position: absolute; margin-left: 120rem;">
+    <a mat-button routerLink=""> Odjava </a>
+  </div>
+
+</mat-toolbar>

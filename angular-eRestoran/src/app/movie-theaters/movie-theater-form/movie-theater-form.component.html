@@ -1,0 +1,23 @@
+<form (submit)="saveChanges()" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Ime*</mat-label>
+    <input formControlName="name" matInput />
+    <mat-error>Ovo polje je obavezno</mat-error>
+  </mat-form-field>
+
+  <h4>Lokacija poslovnice</h4>
+
+  <div style="position: relative; width: 600px;">
+    <app-map
+      [initialCoordinates]="initialCoordinates"
+      (onSelectedLocation)="onSelectedLocation($event)"
+    ></app-map>
+  </div>
+
+  <div style="margin-top: 650px">
+    <button mat-flat-button color="primary" [disabled]="form.invalid">
+      Snimi
+    </button>
+    <a mat-stroked-button routerLink="/movie-theaters">Odustani</a>
+  </div>
+</form>

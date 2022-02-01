@@ -1,0 +1,38 @@
+<h2>Poslovnice</h2>
+
+<button mat-flat-button color="primary" routerLink="/movietheaters/create">Dodaj novu poslovnicu</button>
+
+<app-generic-list [list]="movieTheaters">
+    <ng-container content>
+        <table mat-table [dataSource]="movieTheaters" class="mat-elevation-z8 table-index">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Ime poslovnice</th>
+                <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Uredi</th>
+                <td mat-cell *matCellDef="let element">
+                    <a
+                        routerLink="/movietheaters/edit/{{element.id}}"
+                        mat-flat-button color="primary"
+                    >
+                    Uredi
+                    </a>
+                    <button mat-flat-button color="warn" 
+                    [swal]="{
+                        title: 'Potvrda',
+                        text: 'Da li ste sigurni da želite izbrisati poslovnicu?',
+                        showCancelButton: true
+                    }"
+                    (confirm)="delete(element.id)">
+                        Izbriši
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+
+        </table>
+    </ng-container>
+</app-generic-list>

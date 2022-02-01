@@ -1,0 +1,41 @@
+<h2>Pronađite jelo</h2>
+<div>
+
+<form [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Naziv jela</mat-label>
+        <input formControlName="title" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Vrsta</mat-label>
+        <mat-select formControlName="genreId">
+            <mat-option *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div>
+        <mat-checkbox formControlName="upcomingReleases">Specijalna ponuda</mat-checkbox>
+    </div>
+
+    <div>
+        <mat-checkbox formControlName="inTheaters">Sniženo</mat-checkbox>
+    </div>
+
+    <div class="clear-container">
+        <button mat-flat-button (click)="clearForm()" color="warn">Očisti</button>
+    </div>
+</form>
+
+<button routerLink="/korpa" mat-flat-button color="primary" style="position:absolute; margin-left: 105rem; bottom: 50rem; width: 150px; height: 80px;"> <mat-icon>add_shopping_cart</mat-icon>Vaša korpa</button>
+</div>
+<app-moviess-list  [movies]="movies"></app-moviess-list>
+
+<mat-paginator
+    [length]="totalAmountOfRecords"
+    [pageSize]="recordsPerPage"
+    [pageSizeOptions]="[20, 50]"
+    (page)="paginatorUpdate($event)"
+>
+
+</mat-paginator>
